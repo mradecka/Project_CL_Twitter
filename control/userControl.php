@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once '../src/user.php';
 
@@ -60,7 +61,7 @@ if ("POST" === $_SERVER['REQUEST_METHOD']) {
 
 //edit user
     if (isset($_POST['editusername']) && isset($_POST['editemail']) && isset($_POST['editpassword']) && isset($_POST['editpassword2'])) {
-        
+
         if (!empty($_POST['editusername']) && !empty($_POST['editemail']) && !empty($_POST['editpassword']) && !empty($_POST['editpassword2'])) {
             if ($_POST['editpassword'] === $_POST['editpassword2']) {
                 $username = $_POST['editusername'];
@@ -88,7 +89,7 @@ if ("POST" === $_SERVER['REQUEST_METHOD']) {
         }
     }
 
-
+//delete user
     if (isset($_POST['delete'])) {
         $user = new User();
         $usersArray = $user->loadAllUsers($conn);
@@ -100,6 +101,56 @@ if ("POST" === $_SERVER['REQUEST_METHOD']) {
                 session_unset();
                 header('Location:../index.php?delete');
             }
+        }
+    }
+}
+
+
+if ("GET" == $_SERVER['REQUEST_METHOD']) {
+
+    //load account of one user
+    function oneUser($conn) {
+        if ("GET" == $_SERVER['REQUEST_METHOD']) {
+            if (!empty($_GET['userId'])) {
+                $tweet = new Tweet();
+                $tweetsArray = $tweet->loadAllTweets($conn);
+                foreach ($tweetsArray as $loadtweet) {
+                    $user = new User();
+                    $search = $user->loadUserById($conn, $_GET['userId']);
+
+                    if ($_GET['userId'] == $loadtweet->getUserId()) {
+
+                        echo'<div class = "media">
+                <div class = "media-left">
+                    <h1><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></h1>
+                </div>
+                <div class = "media-right">
+                    <div><a href="./tweet.php?tweetId='.$loadtweet->getId().'">'. $loadtweet->getText() . '</a></div>
+                    <p>' . $loadtweet->getCreationDate() . '</p> 
+                </div>
+            </div>';
+                    }
+                }
+            }
+        }
+    }
+    // print name of user
+    function hello($conn) {
+        if (!empty($_GET['userId'])) {
+            $id = $_GET['userId'];
+        } else {
+            $id = $_SESSION['id'];
+        }
+        $user = new User();
+        $helloUser = $user->loadUserById($conn, $id);
+        $username = $helloUser->getUsername();
+        return $username;
+    }
+    //log out
+    if ("GET" == $_SERVER['REQUEST_METHOD']) {
+        if (isset($_GET['logout'])) {
+            session_unset();
+            header('Location:../index.php?byebye');
         }
     }
 }

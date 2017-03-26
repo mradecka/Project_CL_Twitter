@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['usersname'], $_SESSION['email'], $_SESSION['id'])) {
-header('Location:views/main.php');
+    header('Location:views/main.php');
 } else {
     session_start();
 }
@@ -52,6 +52,9 @@ header('Location:views/main.php');
                             }
                             if (isset($_GET['delete'])) {
                                 echo '<p>Twoje konto zostało usunięte</p>';
+                            }
+                            if (isset($_GET['logout'])) {
+                                echo '<p>Wpadnij do nas jeszcze :)</p>';
                             }
                         }
                         ?></h4></div>

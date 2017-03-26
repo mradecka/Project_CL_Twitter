@@ -24,11 +24,11 @@ if ($_SESSION['id'] == null) {
             <div class='container'>
                 <div class="navbar-header">
                     <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="main.php">Home</a></li>
-                        <li role="presentation"><a href="user.php">Twój profil</a></li>
+                       <li role="presentation" class="active"><a href="main.php">Home</a></li>
+                        <li role="presentation"><a href="user.php?userId=<?php echo $_SESSION['id'] ?>">Twój profil</a></li>
                         <li role="presentation"><a href="#">Wiadomości</a></li>
                         <li role="presentation"><a href="settings.php">Ustawienia</a></li>
-                        <li role="presentation"><a href="logout.php">Wyloguj się</a></li>
+                        <li role="presentation"><a href="../index.php?logout">Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,13 +38,6 @@ if ($_SESSION['id'] == null) {
             <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
                 <div class='page-header'>
                     <h1>Zmiana danych</h1>                         
-                    <form method="POST" action="../control/userControl.php">
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button class="btn btn-danger" name="delete">Usuń konto</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
 
                 <div id="form-messages" class="success" class="error"><h4><?php
@@ -68,7 +61,7 @@ if ($_SESSION['id'] == null) {
                             <div class="form-group">
                                 <label class="control-label col-sm-2" for="email">Twój mail:</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" name="editemail" id="email" >
+                                    <input type="email" class="form-control" name="editemail" id="email" placeholder="Enter mail">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -96,7 +89,15 @@ if ($_SESSION['id'] == null) {
                                 </div>
                             </div>
                         </form>
+
                     </div>
+                </div>
+                                <div class='page-header'>
+                    <h1>Usuwanie konta </h1> 
+                    <form method="POST" action="../control/userControl.php">
+                                <button class="btn btn-danger" name="delete">Usuń konto</button>
+
+                    </form>
                 </div>
             </div>
         </div>

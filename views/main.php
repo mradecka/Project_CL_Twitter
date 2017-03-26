@@ -1,5 +1,6 @@
 <?php
 require_once '../control/userControl.php';
+require_once '../control/tweetControl.php';
 
 
 if ($_SESSION['id'] == null) {
@@ -28,10 +29,10 @@ if ($_SESSION['id'] == null) {
                 <div class="navbar-header">
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active"><a href="main.php">Home</a></li>
-                        <li role="presentation"><a href="user.php">Twój profil</a></li>
+                        <li role="presentation"><a href="user.php?userId=<?php echo $_SESSION['id'] ?>">Twój profil</a></li>
                         <li role="presentation"><a href="#">Wiadomości</a></li>
                         <li role="presentation"><a href="settings.php">Ustawienia</a></li>
-                        <li role="presentation"><a href="logout.php">Wyloguj się</a></li>
+                        <li role="presentation"><a href="../index.php?logout">Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,17 +41,17 @@ if ($_SESSION['id'] == null) {
         <div class="container">
             <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
                 <div class='page-header'>
-                    <h3>Witaj!</h3>
+                    <h3>Witaj! <?php echo $_SESSION['username']; ?>.</h3>
                 </div>
 
                 <div id="form-messages" class="success" class="error"></div>
 
                 <div class='panel'>
                     <div class='panel-body'>
-                        <form id="ajax-contact" action="" method="POST">
+                        <form id="ajax-contact" action="" method="POST" action="">
                             <div class="form-group">
                                 <label for="comment">Dodaj nowy tweet:</label>
-                                <textarea class="form-control" rows="5" id="tweet"></textarea>
+                                <textarea class="form-control" rows="5" id="tweet" name="newtweet" maxlength="140"></textarea>
                             </div>
                             <br>
                             <p>
@@ -66,14 +67,18 @@ if ($_SESSION['id'] == null) {
         <div class="container">
             <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
                 <div class='page-header'>
-                    <h3>Wszystkie tweety</h3>
+                    <h2>Wszystkie tweety</h2>
                 </div>
+                <div class="panel">
 
-
+                </div>
                 <div class='panel'>
                     <div class='panel-body'>
-                        <ol id="books">
-                        </ol>
+
+                        <?php
+                        loadTweets($conn);
+                        ?>
+
                     </div>
                 </div>
             </div>

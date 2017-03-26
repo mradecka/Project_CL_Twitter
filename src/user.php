@@ -1,6 +1,6 @@
 <?php
 
-require_once '/home/marta/Workspace/Project_CL_Twitter/src/dbConnection.php';
+require_once (__DIR__ . '/../src/dbConnection.php');
 
 class User {
 

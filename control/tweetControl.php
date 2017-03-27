@@ -1,6 +1,8 @@
 <?php
 
 require_once (__DIR__ . '/../src/tweet.php');
+require_once (__DIR__ . '/../src/comment.php');
+
 
 addTweet($conn);
 
@@ -79,6 +81,33 @@ function addTweet($conn) {
         }
     }
 }
+
+function addCommentsToTweet($conn) {
+    if("GET" == $_SERVER['REQUEST_METHOD']) {
+    $postId = $_GET['tweetId'];    
+    $comment = new Comment();
+        $commentsArray = $comment->loadAllCommentsByPostId($conn, $postId);
+        foreach ($commentsArray as $loadcomment) {
+            $user = new User();
+            $search = $user->loadUserById($conn, $loadcomment->getUserId());
+            echo'<div class = "media">
+        <div class = "media-left">
+        <h1><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></h1>
+        </div>
+        <div class = "media-right">
+        <h4 class = "media-heading"><a href="./user.php?userId=' . $loadcomment->getUserId() . '">' . $search->getUsername() . '</a></h4>
+        <div><a href="./tweet.php?tweetId=' . $loadcomment->getId() . '">' . $loadcomment->getText() . '</a></div>
+        <p>' . $loadcomment->getCreation_date() . '</p> 
+        </div>
+        </div>';
+        }
+    }
+    
+    ;
+}
+
+
+
 ?>
 
 

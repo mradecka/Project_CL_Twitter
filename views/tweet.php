@@ -47,6 +47,12 @@ if ($_SESSION['id'] == null) {
                     oneTweet($conn);
                     ?>
                 </div>
+
+                <div class='panel'>
+                    <?php
+                    addCommentsToTweet($conn);
+                    ?>
+                </div>
             </div>
         </div>
     </body>

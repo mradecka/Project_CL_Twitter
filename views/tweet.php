@@ -49,9 +49,38 @@ if ($_SESSION['id'] == null) {
                 </div>
 
                 <div class='panel'>
-                    <?php
-                    addCommentsToTweet($conn);
-                    ?>
+                    <div class='panel-body'>
+                        <form id="ajax-contact" action="" method="POST">
+                            <div class="form-group">
+                                <label for="comment">Dodaj komentarz:</label>
+                                <textarea class="form-control" rows="5" id="comment" name="comment" maxlength="140"></textarea>
+                            </div>
+                            <br>
+                            <p>
+                                <button type='submit' class='btn btn-primary active' id='add'>Dodaj</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container">
+                <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
+                    <div class='page-header'>
+                        <h5>Komentarze</h5>
+                    </div>
+                    <div class="panel">
+
+                    </div>
+                    <div class='panel'>
+                        <div class='panel-body'>
+
+                            <?php
+                            loadCommentsToTweet($conn);
+                            ?>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -28,11 +28,11 @@ if ($_SESSION['id'] == null) {
             <div class='container'>
                 <div class="navbar-header">
                     <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="main.php">Home</a></li>
-                        <li role="presentation"><a href="user.php?userId=<?php echo $_SESSION['id'] ?>">Twój profil</a></li>
-                        <li role="presentation"><a href="#">Wiadomości</a></li>
-                        <li role="presentation"><a href="settings.php">Ustawienia</a></li>
-                        <li role="presentation"><a href="../index.php?logout">Wyloguj się</a></li>
+                        <li role="presentation" class="active"><a href="main.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Strona główna</a></li>
+                        <li role="presentation"><a href="user.php?userId=<?php echo $_SESSION['id'] ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Twój profil</a></li>
+                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Wiadomości</a></li>
+                        <li role="presentation"><a href="settings.php"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Ustawienia</a></li>
+                        <li role="presentation"><a href="../index.php?logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,7 +41,7 @@ if ($_SESSION['id'] == null) {
         <div class="container">
             <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
                 <div class='page-header'>
-                    <h3>Witaj! <?php echo $_SESSION['username']; ?>.</h3>
+                    <h3>Witaj <?php echo $_SESSION['username']; ?>!</h3>
                 </div>
 
                 <div id="form-messages" class="success" class="error"></div>

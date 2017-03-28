@@ -2,6 +2,7 @@
 
 session_start();
 require_once '../src/user.php';
+require_once '../src/comment.php';
 
 if ("POST" === $_SERVER['REQUEST_METHOD']) {
     //login 
@@ -115,18 +116,21 @@ if ("GET" == $_SERVER['REQUEST_METHOD']) {
                 $tweet = new Tweet();
                 $tweetsArray = $tweet->loadAllTweets($conn);
                 foreach ($tweetsArray as $loadtweet) {
+
                     $user = new User();
                     $search = $user->loadUserById($conn, $_GET['userId']);
 
                     if ($_GET['userId'] == $loadtweet->getUserId()) {
-
+                        $comment = new Comment();
+                        $counter = $comment->howManyComments($conn, $loadtweet->getId());
                         echo'<div class = "media">
                 <div class = "media-left">
                     <h1><span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></h1>
                 </div>
                 <div class = "media-right">
-                    <div><a href="./tweet.php?tweetId='.$loadtweet->getId().'">'. $loadtweet->getText() . '</a></div>
+                    <div><a href="./tweet.php?tweetId=' . $loadtweet->getId() . '">' . $loadtweet->getText() . '</a></div>
                     <p>' . $loadtweet->getCreationDate() . '</p> 
+                    <p> Ilość komentarzy: '. $counter . '</p> 
                 </div>
             </div>';
                     }
@@ -134,6 +138,7 @@ if ("GET" == $_SERVER['REQUEST_METHOD']) {
             }
         }
     }
+
     // print name of user
     function hello($conn) {
         if (!empty($_GET['userId'])) {
@@ -146,6 +151,7 @@ if ("GET" == $_SERVER['REQUEST_METHOD']) {
         $username = $helloUser->getUsername();
         return $username;
     }
+
     //log out
     if ("GET" == $_SERVER['REQUEST_METHOD']) {
         if (isset($_GET['logout'])) {

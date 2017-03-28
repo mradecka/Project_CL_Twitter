@@ -24,11 +24,11 @@ if ($_SESSION['id'] == null) {
             <div class='container'>
                 <div class="navbar-header">
                     <ul class="nav nav-tabs">
-                       <li role="presentation" class="active"><a href="main.php">Home</a></li>
-                        <li role="presentation"><a href="user.php?userId=<?php echo $_SESSION['id'] ?>">Twój profil</a></li>
-                        <li role="presentation"><a href="#">Wiadomości</a></li>
-                        <li role="presentation"><a href="settings.php">Ustawienia</a></li>
-                        <li role="presentation"><a href="../index.php?logout">Wyloguj się</a></li>
+                        <li role="presentation" class="active"><a href="main.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Strona główna</a></li>
+                        <li role="presentation"><a href="user.php?userId=<?php echo $_SESSION['id'] ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Twój profil</a></li>
+                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Wiadomości</a></li>
+                        <li role="presentation"><a href="settings.php"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Ustawienia</a></li>
+                        <li role="presentation"><a href="../index.php?logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Wyloguj się</a></li>
                     </ul>
                 </div>
             </div>
@@ -95,7 +95,7 @@ if ($_SESSION['id'] == null) {
                                 <div class='page-header'>
                     <h1>Usuwanie konta </h1> 
                     <form method="POST" action="../control/userControl.php">
-                                <button class="btn btn-danger" name="delete">Usuń konto</button>
+                                <button class="btn btn-danger" name="delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Usuń konto</button>
 
                     </form>
                 </div>

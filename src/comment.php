@@ -117,6 +117,13 @@ class Comment {
         return $ret;
     }
 
+    
+     static public function howManyComments(PDO $conn, $postId) {
+        $stmt = $conn->prepare('SELECT * FROM `Comments` WHERE `postId`=:postId;');
+        $stmt->execute(['postId' => $postId]);
+        $result = $stmt->fetchAll();
+        return count($result);
+    }
 //    public function delete(PDO $conn) {
 //        if ($this->id != -1) {
 //            $stmt = $conn->prepare('DELETE FROM `Users` WHERE id=:id;');

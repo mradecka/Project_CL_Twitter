@@ -80,9 +80,6 @@ class Comment {
         }
     }
 
-//    loadCommentById()
-//    loadAllCommentsByPostId()
-
     static public function loadCommentById(PDO $conn, $id) {
         $stmt = $conn->prepare('SELECT * FROM `Comments` WHERE id=:id;');
         $result = $stmt->execute(['id' => $id]);
@@ -124,18 +121,6 @@ class Comment {
         $result = $stmt->fetchAll();
         return count($result);
     }
-//    public function delete(PDO $conn) {
-//        if ($this->id != -1) {
-//            $stmt = $conn->prepare('DELETE FROM `Users` WHERE id=:id;');
-//            $result = $stmt->execute(['id' => $this->id]);
-//            if ($result === true) {
-//                $this->id = -1;
-//                return true;
-//            }
-//            return false;
-//        }
-//        return true;
-//    }
 
 }
 

@@ -1,6 +1,6 @@
 <?php
 require_once '../control/userControl.php';
-require_once '../control/tweetControl.php';
+require_once '../control/messageControl.php';
 
 
 if ($_SESSION['id'] == null) {
@@ -13,7 +13,7 @@ if ($_SESSION['id'] == null) {
 
     <head>
         <meta charset="UTF-8">
-        <title>Strona użytkownika</title>
+        <title>Wiadomości</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -38,28 +38,10 @@ if ($_SESSION['id'] == null) {
             </div>
         </nav>
 
-        <?php
-        if ("GET" === $_SERVER['REQUEST_METHOD']) {
-            if (isset($_GET['userId']) && $_GET['userId'] != $_SESSION['id']) {
-                echo '                            
-                    <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button class="btn btn-primary active">
-                                        <a href="./messageSend.php/?userId='.$_GET['userId'].'">
-                                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                                Wyślij wiadomość
-                                        </a>
-                                    </button>
-                                </div>
-                    </div>';
-            }
-        }
-        ?>
-
         <div class="container">
             <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
                 <div class='page-header'>
-                    <h3>Strona użytkownika <?php echo hello($conn); ?></h3>
+                    <h3>Wiadomości otrzymane</h3>
 
                 </div>
                 <div class="col-sm-offset-2 col-sm-10">
@@ -69,7 +51,23 @@ if ($_SESSION['id'] == null) {
                     <div class='panel-body'>
                         <div class='panel-body'>
                             <?php
-                            oneUser($conn)
+                            receiver($conn);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class='page-header'>
+                    <h3>Wiadomości wysłane</h3>
+
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                </div>
+
+                <div class='panel'>
+                    <div class='panel-body'>
+                        <div class='panel-body'>
+                            <?php
+                            send($conn);
                             ?>
                         </div>
                     </div>

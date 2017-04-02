@@ -54,6 +54,7 @@ if (isset($_SESSION['usersname'], $_SESSION['email'], $_SESSION['id'])) {
                                 echo '<p>Twoje konto zostało usunięte</p>';
                             }
                             if (isset($_GET['logout'])) {
+                                session_unset();
                                 echo '<p>Wpadnij do nas jeszcze :)</p>';
                             }
                         }

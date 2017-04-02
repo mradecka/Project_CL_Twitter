@@ -1,5 +1,6 @@
 <?php
-require_once '../control/userControl.php';
+session_start();
+require_once '../control/messageControl.php';
 require_once '../control/tweetControl.php';
 
 
@@ -13,7 +14,7 @@ if ($_SESSION['id'] == null) {
 
     <head>
         <meta charset="UTF-8">
-        <title>Tweet</title>
+        <title>Strona główna</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -28,7 +29,7 @@ if ($_SESSION['id'] == null) {
             <div class='container'>
                 <div class="navbar-header">
                     <ul class="nav nav-tabs">
-                        <li role="presentation" class="active"><a href="main.php">Strona główna</a></li>
+                        <li role="presentation" class="active"><a href="../main.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Strona główna</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,50 +37,27 @@ if ($_SESSION['id'] == null) {
 
         <div class="container">
             <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
-                <div class='page-header'>
-                    <h3>Informacje o tweet</h3>
-                </div>
 
                 <div id="form-messages" class="success" class="error"></div>
-
-                <div class='panel'>
-                    <?php
-                    oneTweet($conn);
-                    ?>
-                </div>
-
+                <?php
+                if ("POST" == $_SERVER['REQUEST_METHOD']) {
+                    if (isset($_GET['userId']) && !empty($_POST['mailtext'])) {
+                        echo 'Wiadomość została wysłana';
+                    }
+                }
+                ?>
                 <div class='panel'>
                     <div class='panel-body'>
-                        <form id="ajax-contact" action="" method="POST">
+                        <form id="ajax-contact" action="" method="POST" action="">
                             <div class="form-group">
-                                <label for="comment">Dodaj komentarz:</label>
-                                <textarea class="form-control" rows="5" id="comment" name="comment" maxlength="140"></textarea>
+                                <label for="comment">Treść wiadomości:</label>
+                                <textarea class="form-control" rows="5" id="tweet" name="mailtext" maxlength="140"></textarea>
                             </div>
                             <br>
                             <p>
-                                <button type='submit' class='btn btn-primary active' id='add'>Dodaj</button>
+                                <button type='submit' class='btn btn-primary active' id='send'>Wyślij</button>
                             </p>
                         </form>
-                    </div>
-                </div>
-
-            </div>
-            <div class="container">
-                <div class='col-xs-12 col-sm-6 col-sm-offset-3'>
-                    <div class='page-header'>
-                        <h5>Komentarze</h5>
-                    </div>
-                    <div class="panel">
-
-                    </div>
-                    <div class='panel'>
-                        <div class='panel-body'>
-
-                            <?php
-                            loadCommentsToTweet($conn);
-                            ?>
-
-                        </div>
                     </div>
                 </div>
             </div>

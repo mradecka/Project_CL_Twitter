@@ -133,16 +133,3 @@ class User {
     
 
 }
-
-//$user = new User();
-//$user->setEmail('onet@google.pl');
-//$user->setHashPass('bbb');
-//$user->setUsername('ddd');
-//echo $user->saveToDB($conn);
-//$new = $user->loadUserById($conn, 16);
-//var_dump($new->delete($conn));
-//var_dump($new->setEmail('mmm'));
-//var_dump($new->getEmail('222'));
-//var_dump($new->getHashPass());
-//var_dump($new->setHashPass('1233333333333333333333333333333333333'));
-//var_dump($new->saveToDB($conn));

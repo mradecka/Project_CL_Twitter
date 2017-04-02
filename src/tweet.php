@@ -106,11 +106,3 @@ class Tweet {
         return $ret;
     }
 }
-
-//$tweet = new Tweet();
-//$tweet->setUserId('2');
-//$tweet->setText('Hello Moto');
-//$tweet->setCreationDate();
-//$tweet->saveToDB($conn);
-//var_dump($tweet->loadAllTweets($conn));
-//var_dump($tweet->loadTweetById($conn, 2));

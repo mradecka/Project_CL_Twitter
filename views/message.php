@@ -30,7 +30,7 @@ if ($_SESSION['id'] == null) {
                     <ul class="nav nav-tabs">
                         <li role="presentation" class="active"><a href="main.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Strona główna</a></li>
                         <li role="presentation"><a href="user.php?userId=<?php echo $_SESSION['id'] ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Twój profil</a></li>
-                        <li role="presentation"><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Wiadomości</a></li>
+                        <li role="presentation"><a href="message.php?userId"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Wiadomości</a></li>
                         <li role="presentation"><a href="settings.php"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Ustawienia</a></li>
                         <li role="presentation"><a href="../index.php?logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Wyloguj się</a></li>
                     </ul>

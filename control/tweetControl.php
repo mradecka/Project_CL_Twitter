@@ -28,7 +28,6 @@ function loadTweets($conn) {
 }
 
 
-
 function oneTweet($conn) {
     if ("GET" == $_SERVER['REQUEST_METHOD']) {
         if (!empty($_GET['tweetId'])) {
